@@ -1,4 +1,4 @@
-import './styles.css';
+// import './styles.css';
 import { 
   hideLoginError, 
   showLoginState, 
@@ -7,7 +7,8 @@ import {
   showLoginError, 
   btnLogin,
   btnSignup,
-  btnLogout
+  btnLogout,
+  btnGoogle
 } from './ui'
 
 import { initializeApp } from 'firebase/app';
@@ -17,17 +18,20 @@ import {
   signOut,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  connectAuthEmulator
+  signInWithPopup,
+  GoogleAuthProvider
+  
+  // connectAuthEmulator
 } from 'firebase/auth';
 
 const firebaseApp = initializeApp({
-  apiKey: "dummy-apiKey",
-  authDomain: "dummy-authDomain.firebaseapp.com",
-  projectId: "dummy-project-id",
-  storageBucket: "dummy-authDomain.firebaseapp.com",
-  messagingSenderId: "123456789012",
-  appId: "1:123456789012:web:7c7abae699b868b7f896ec",
-  measurementId: "G-ABCDEFGHIJ"
+  apiKey: "AIzaSyCfx1W3sLJ58Cwz0CBl8HIgv3XxrO1Fu_M",
+  authDomain: "newproject-a6cfe.firebaseapp.com",
+  projectId: "newproject-a6cfe",
+  storageBucket: "newproject-a6cfe.appspot.com",
+  messagingSenderId: "317196709726",
+  appId: "1:317196709726:web:d6cb2ab25887606c8b29cf",
+  measurementId: "G-CBDNGYL5S7"
 });
 
 // Login using email/password
@@ -62,16 +66,26 @@ const createAccount = async () => {
   } 
 }
 
+const loginGoogle = async () => {
+  console.log("coolBASIL")
+
+  const provider = new GoogleAuthProvider()
+  await signInWithPopup(auth, provider)
+
+}
+
+
 // Monitor auth state
 const monitorAuthState = async () => {
   onAuthStateChanged(auth, user => {
+
     if (user) {
       console.log(user)
       showApp()
       showLoginState(user)
 
       hideLoginError()
-      hideLinkError()
+      // hideLinkError()
     }
     else {
       showLoginForm()
@@ -88,8 +102,12 @@ const logout = async () => {
 btnLogin.addEventListener("click", loginEmailPassword) 
 btnSignup.addEventListener("click", createAccount)
 btnLogout.addEventListener("click", logout)
+btnGoogle.addEventListener("click", loginGoogle)
 
 const auth = getAuth(firebaseApp);
-connectAuthEmulator(auth, "http://localhost:9099");
+
+
+// connectAuthEmulator(auth, "http://localhost:9099");
+// connectAuthEmulator(auth, "http://localhost:9099");
 
 monitorAuthState();
