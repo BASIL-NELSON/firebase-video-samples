@@ -287,22 +287,35 @@ footer img:focus , footer a:focus { outline: none; }
       <button id="btnGoogle" type="button" class="button buttonBlue">Login with google</button>
     </form>
   </div>
-  <div class="apppage1">
+  <div class="appmain">
 
   </div>
-  <div id="applogout">
+  <div id="profile">
     <div class="header">
       <h1>Basil</h1>
     </div>
     <form>
+      
       <div class="group">
         <div id="lblAuthState" class="authlabel"></div>
       </div>
       <button id="btnLogout" type="button" class="button buttonBlue">Log out</button>
+      <button id="btnResetPasswordWindow" type="button" class="button buttonBlue">Reset Password</button>
     </form>
   </div>
-
-
+  <div class="ResetPasswordWindow">
+    <form>
+      <div class="group">
+        <input id="txtPassword" placeholder="" type="password">
+        <label>Password</label>
+      </div>
+      <div class="group">
+        <input id="txtNewPassword" placeholder="" type="password">
+        <label>Password</label>
+      </div>
+    </form>
+  </div>
+ 
 </body>
 
 </html>

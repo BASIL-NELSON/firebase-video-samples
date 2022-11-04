@@ -8,7 +8,8 @@ import {
   btnLogin,
   btnSignup,
   btnLogout,
-  btnGoogle
+  btnGoogle,
+  btnResetPassword
 } from './ui'
 
 import { initializeApp } from 'firebase/app';
@@ -40,16 +41,16 @@ const loginEmailPassword = async () => {
   const loginPassword = txtPassword.value
 
   // step 1: try doing this w/o error handling, and then add try/catch
-  await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+  // await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
 
   // step 2: add error handling
-  // try {
-  //   await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
-  // }
-  // catch(error) {
-  //   console.log(`There was an error: ${error}`)
-  //   showLoginError(error)
-  // }
+  try {
+    await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+  }
+  catch(error) {
+    console.log(`There was an error: ${error}`)
+    showLoginError(error)
+  }
 }
 
 // Create new account using email/password
@@ -72,6 +73,9 @@ const loginGoogle = async () => {
   const provider = new GoogleAuthProvider()
   await signInWithPopup(auth, provider)
 
+}
+const resetPassword = async() =>{
+  
 }
 
 
@@ -103,6 +107,7 @@ btnLogin.addEventListener("click", loginEmailPassword)
 btnSignup.addEventListener("click", createAccount)
 btnLogout.addEventListener("click", logout)
 btnGoogle.addEventListener("click", loginGoogle)
+btnResetPassword.addEventListener("click", resetPassword)
 
 const auth = getAuth(firebaseApp);
 

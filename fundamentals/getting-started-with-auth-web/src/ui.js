@@ -9,6 +9,7 @@ export const btnSignup = document.querySelector('#btnSignup')
 
 
 export const btnLogout = document.querySelector('#btnLogout')
+export const btnResetPassword = document.querySelector('#btnResetPassword')
 
 export const btnGoogle = document.querySelector('#btnGoogle')
 
@@ -20,25 +21,34 @@ export const lblLoginErrorMessage = document.querySelector('#lblLoginErrorMessag
 
 export const showLoginForm = () => {
   login.style.display = 'block'
-  app.style.display = 'none'  
+  profile.style.display = 'none'  
 }
 
 export const showApp = () => {
   login.style.display = 'none'
-  applogout.style.display = 'block'
+  profile.style.display = 'block'
 }
 
 export const hideLoginError = () => {
   divLoginError.style.display = 'none'
   lblLoginErrorMessage.innerHTML = ''
 }
+export const showResetPassword = () => {
+  resetPasswordWindow.style.display = 'block'
+}
+export const hideResetPassword = () => {
+  resetPasswordWindow.style.display = 'none'
+}
 
 export const showLoginError = (error) => {
   divLoginError.style.display = 'block'    
-  if (error.code == error.INVALID_PASSWORD) {
+  if (error.message == `Firebase: Error (auth/wrong-password).`) {
     lblLoginErrorMessage.innerHTML = `Wrong password. Try again.`
   }
-  else if(error.message == "Firebase: Error (auth/invalid-email).") {
+  else if(error.message == `Firebase: Error (auth/user-not-found).`) {
+    lblLoginErrorMessage.innerHTML = `This account does not exist. Try again.`
+  }
+  else if(error.message == "FirebaseError: Firebase: Error (auth/invalid-email)") {
     lblLoginErrorMessage.innerHTML = `Not a valid email. try again.`      
   } 
   else if(error.code == AuthErrorCodes.EMAIL_EXISTS) {
@@ -58,7 +68,7 @@ export const showLoginError = (error) => {
 }
 
 export const showLoginState = (user) => {
-  lblAuthState.innerHTML = `You're logged in as ${user.displayName} (uid: ${user.uid}, email: ${user.email}) `
+  lblAuthState.innerHTML = `You're logged in as ${user.email} `
 }
 
 hideLoginError()
