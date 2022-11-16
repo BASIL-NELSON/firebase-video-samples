@@ -9,7 +9,7 @@ export const btnSignup = document.querySelector('#btnSignup')
 
 
 export const btnLogout = document.querySelector('#btnLogout')
-export const btnResetPassword = document.querySelector('#btnResetPassword')
+
 
 export const btnGoogle = document.querySelector('#btnGoogle')
 
