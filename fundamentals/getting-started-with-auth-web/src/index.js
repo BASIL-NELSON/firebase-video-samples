@@ -31,7 +31,17 @@ import {
   uploadBytes,
   uploadString
 } from 'firebase/storage';
+import{
+  getFirestore,
+  updateDoc,
+  addDoc,
+  collection,
+  Firestore,
+  doc,
+  setDoc,
+  Timestamp
 
+} from 'firebase/firestore'
 const firebaseApp = initializeApp({
   apiKey: "AIzaSyCfx1W3sLJ58Cwz0CBl8HIgv3XxrO1Fu_M",
   authDomain: "newproject-a6cfe.firebaseapp.com",
@@ -87,9 +97,19 @@ const loginGoogle = async () => {
 
 }
 
+const tryDB = async (user) => {
+  const docData = {
+    login_Dates: Timestamp.fromDate(new Date())
 
+    
+  };
 
-// Monitor auth state
+ 
+
+  await setDoc(doc(db, "usr", user.uid), docData, {merge: true});
+}
+
+// Monitor sdfauth state
 const monitorAuthState = async () => {
   onAuthStateChanged(auth, user => {
     date = new Date();
@@ -101,7 +121,7 @@ const monitorAuthState = async () => {
       showLoginState(user)
 
       hideLoginError()
-
+      tryDB(user)
       userRef = ref(storage, 'users/' + user.uid + '/signins.txt');
       uploadString (userRef, dateString).then((snapshot) => {
         console.log("tried")
@@ -132,6 +152,8 @@ var dateString;
 const auth = getAuth(firebaseApp);
 const storage = getStorage(firebaseApp);
 const storageRef = ref(storage);
+const db = getFirestore();
+const path = doc(db, '/usr/newdoc');
 var userRef;
 
 
