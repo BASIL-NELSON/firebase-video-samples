@@ -39,7 +39,8 @@ import{
   Firestore,
   doc,
   setDoc,
-  Timestamp
+  Timestamp,
+  
 
 } from 'firebase/firestore'
 const firebaseApp = initializeApp({
@@ -97,23 +98,25 @@ const loginGoogle = async () => {
 
 }
 
-const tryDB = async (user) => {
+const saveTheDate = async (user) => {
   const docData = {
     login_Dates: Timestamp.fromDate(new Date())
 
     
   };
+  const blankDoc = {
+
+  };
 
  
-
-  await setDoc(doc(db, "usr", user.uid), docData, {merge: true});
+  await setDoc(doc(db, "usr/", user.uid),  blankDoc,  {merge: true});
+  await addDoc(collection(db, "usr/" + user.uid + "/logins"), docData);
 }
 
 // Monitor sdfauth state
 const monitorAuthState = async () => {
   onAuthStateChanged(auth, user => {
-    date = new Date();
-    dateString = JSON.stringify(date)
+    
     console.log(date);
     if (user) {
       console.log(user)
@@ -121,11 +124,11 @@ const monitorAuthState = async () => {
       showLoginState(user)
 
       hideLoginError()
-      tryDB(user)
-      userRef = ref(storage, 'users/' + user.uid + '/signins.txt');
-      uploadString (userRef, dateString).then((snapshot) => {
-        console.log("tried")
-      });
+      saveTheDate(user)
+      // userRef = ref(storage, 'users/' + user.uid + '/signins.txt');
+      // uploadString (userRef, dateString).then((snapshot) => {
+      //   console.log("tried")
+      // });
       // hideLinkError()
     }
     else {
