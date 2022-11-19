@@ -1,8 +1,11 @@
 import { AuthErrorCodes } from 'firebase/auth';
+import { doc } from 'firebase/firestore';
+import { uploadBytes } from 'firebase/storage';
 
 export const txtEmail = document.querySelector('#txtEmail')
 export const txtPassword = document.querySelector('#txtPassword')
 
+export const fileUpload = document.querySelector('#fileUpload')
 
 export const btnLogin = document.querySelector('#btnLogin')
 export const btnSignup = document.querySelector('#btnSignup')
@@ -21,23 +24,26 @@ export const lblLoginErrorMessage = document.querySelector('#lblLoginErrorMessag
 
 export const showLoginForm = () => {
   login.style.display = 'block'
-  profile.style.display = 'none'  
+  profile.style.display = 'none' 
+  upload.style.display = 'none' 
 }
 
 export const showApp = () => {
   login.style.display = 'none'
   profile.style.display = 'block'
+  upload.style.display = 'none'
 }
 
 export const hideLoginError = () => {
   divLoginError.style.display = 'none'
   lblLoginErrorMessage.innerHTML = ''
 }
-export const showResetPassword = () => {
-  resetPasswordWindow.style.display = 'block'
-}
-export const hideResetPassword = () => {
-  resetPasswordWindow.style.display = 'none'
+
+export const showFileUpload = () => {
+  upload.style.display = 'block'
+  login.style.display = 'none'
+  profile.style.display = 'none'  
+
 }
 
 export const showLoginError = (error) => {

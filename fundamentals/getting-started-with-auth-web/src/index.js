@@ -9,7 +9,7 @@ import {
   btnSignup,
   btnLogout,
   btnGoogle,
-  btnResetPassword
+  showFileUpload
 } from './ui'
 
 import { initializeApp } from 'firebase/app';
@@ -135,6 +135,26 @@ const monitorAuthState = async () => {
       showLoginForm()
       lblAuthState.innerHTML = `You're not logged in.`
     }
+  })
+}
+
+function uploadFile(files) {
+  const storageRef = firebase.storage().ref();
+  const imgRef = storageRef.child('horse.jpg');
+
+  const file = files.item(0);
+
+  const task = imgRef.put(file)
+
+  // successful upload
+  task.then(snapshot => {
+      const url = snapshot.downloadURL
+  })
+
+  // monitor progress
+  task.on('state_changed', snapshot => {
+      console.log(snapshot)
+
   })
 }
 
