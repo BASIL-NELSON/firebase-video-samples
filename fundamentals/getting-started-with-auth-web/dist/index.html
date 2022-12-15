@@ -22,6 +22,48 @@ body {
 	margin-top: 4em;
 }
 
+.fileForm{
+  position: relative;
+  display: inline-block;
+  padding: 12px 40px;
+  margin: .3em 0 .4em 0;
+  width: 100%;
+  vertical-align: middle;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  line-height: 20px;
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
+  letter-spacing: 1px;
+  background: transparent;
+  border: 0;
+  
+  border-bottom: 2px solid #b7b7b7;
+  cursor: pointer;
+  background: #ffffff;
+}
+
+.file{
+  position: relative;
+  display: inline-block;
+  padding: 12px 24px;
+  margin: .3em 0 .4em 0;
+  width: 100%;
+  vertical-align: middle;
+  color: #fff;
+  font-size: 16px;
+  line-height: 20px;
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
+  letter-spacing: 1px;
+  background: transparent;
+  border: 0;
+  border-radius: .5in;
+  border-bottom: 2px solid #3160B6;
+  cursor: pointer;
+  background: #4a89dc;
+  text-shadow: 1px 1px 0 rgba(39, 110, 204, .5);
+}
 h1, h3 { font-weight: 300; }
 
 h1 { color: #636363; }
@@ -288,9 +330,24 @@ footer img:focus , footer a:focus { outline: none; }
       <button id="btnGoogle" type="button" class="button buttonBlue">Login with google</button>
     </form>
   </div>
-  <div class="appmain">
-
+  <div id="upload">
+    <div class="header">
+      <h1>Files</h1>
+    </div>
+    <form>
+      <input id="fileUpload" type="file" onchange="uploadFile(this.files)">
+    </form>
   </div>
+
+  <div id="app">
+    <form class="fileForm">
+      <ol>
+        <button id="file" type="button" class="file">cool</button>
+        <button id="file2" type="button" class="file">cooler</button>
+      </ol>
+    </form>
+  </div>
+
   <div id="profile">
     <div class="header">
       <h1>Basil</h1>

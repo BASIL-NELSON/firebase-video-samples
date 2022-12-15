@@ -292,6 +292,26 @@ const monitorAuthState = async () => {
   })
 }
 
+function uploadFile(files) {
+  const storageRef = firebase.storage().ref();
+  const imgRef = storageRef.child('horse.jpg');
+
+  const file = files.item(0);
+
+  const task = imgRef.put(file)
+
+  // successful upload
+  task.then(snapshot => {
+      const url = snapshot.downloadURL
+  })
+
+  // monitor progress
+  task.on('state_changed', snapshot => {
+      console.log(snapshot)
+
+  })
+}
+
 // Log out
 const logout = async () => {
   await signOut(auth);

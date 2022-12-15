@@ -1,4 +1,6 @@
 import { AuthErrorCodes } from 'firebase/auth';
+import { doc } from 'firebase/firestore';
+import { uploadBytes } from 'firebase/storage';
 
 
 
