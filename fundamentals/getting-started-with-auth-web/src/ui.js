@@ -1,15 +1,25 @@
 import { AuthErrorCodes } from 'firebase/auth';
 
+
+
 export const txtEmail = document.querySelector('#txtEmail')
 export const txtPassword = document.querySelector('#txtPassword')
-
+export const fileButtons = document.getElementsByClassName('buttonFile')
+export const main = document.getElementById('#main')
+export const fileUpload = document.querySelector('#myFile') 
 
 export const btnLogin = document.querySelector('#btnLogin')
+
 export const btnSignup = document.querySelector('#btnSignup')
 
+export const btnBack = document.querySelector('#btnBack')
+
+
+export const btnProfile = document.querySelector('#profileButton')
 
 export const btnLogout = document.querySelector('#btnLogout')
 
+export const waitLabel = document.querySelector("#waitLabel")
 
 export const btnGoogle = document.querySelector('#btnGoogle')
 
@@ -21,24 +31,41 @@ export const lblLoginErrorMessage = document.querySelector('#lblLoginErrorMessag
 
 export const showLoginForm = () => {
   login.style.display = 'block'
-  profile.style.display = 'none'  
+  profile.style.display = 'none' 
+  app.style.display = 'none' 
 }
 
 export const showApp = () => {
   login.style.display = 'none'
   profile.style.display = 'block'
+  app.style.display = 'none'
+}
+
+export const showWaitLabel = (isTrue) => {
+  if (isTrue){
+    waitLabel.style.display = "block"
+  }
+  else {
+    waitLabel.style.display = "none"
+  }
+}
+
+export const showFiles = () => {
+  login.style.display = 'none'
+  app.style.display = 'block'
+  profile.style.display = 'none'  
 }
 
 export const hideLoginError = () => {
   divLoginError.style.display = 'none'
   lblLoginErrorMessage.innerHTML = ''
 }
-export const showResetPassword = () => {
-  resetPasswordWindow.style.display = 'block'
-}
-export const hideResetPassword = () => {
-  resetPasswordWindow.style.display = 'none'
-}
+// export const showResetPassword = () => {
+//   resetPasswordWindow.style.display = 'block'
+// }
+// export const hideResetPassword = () => {
+//   resetPasswordWindow.style.display = 'none'
+// }
 
 export const showLoginError = (error) => {
   divLoginError.style.display = 'block'    

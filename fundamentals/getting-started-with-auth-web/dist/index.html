@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Basil website</title>
+ 
   <!-- <link rel="stylesheet" href="styles.css"> -->
   <style>
     * { box-sizing:border-box; }
@@ -299,12 +300,34 @@ footer img:focus , footer a:focus { outline: none; }
       <div class="group">
         <div id="lblAuthState" class="authlabel"></div>
       </div>
-      <button id="btnLogout" type="button" class="button buttonBlue">Log out</button>
-     
+      <button id="btnLogout" type="button" class="button buttonBlue">Log Out</button>
+      <button id="btnBack" type="button" class="button buttonBlue">Go Back</button>
     </form>
   </div>
+
+  <div id="app">
+    <div class="header">
+
+    </div>
+    <form>
+      <div>
+        <h1 id="waitLabel" style="font-size:medium; text-align: center; display: none;">
+          Please Wait...
+        </h1>
+      </div>
+      <div class="fileUpload">
+        <input type="file" id="myFile" name="filename" multiple>
+      </div>
+      <div class="group" id="main">
+        
+      </div>
+      <button id="profileButton" class="button buttonBlue" type="button">Profile</button>
+    </form>
+    
+
+  </div>
  
- 
+  
 </body>
 
 </html>
