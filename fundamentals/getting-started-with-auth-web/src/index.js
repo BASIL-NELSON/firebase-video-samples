@@ -1,5 +1,9 @@
 // import './styles.css';
-
+import { 
+  initializeAppCheck, 
+  ReCaptchaV3Provider,
+  setTokenAutoRefreshEnabled
+} from 'firebase/app-check';
 import { 
   hideLoginError, 
   showLoginState, 
@@ -64,6 +68,14 @@ const firebaseApp = initializeApp({
   measurementId: "G-CBDNGYL5S7"
 });
 
+const appCheck = initializeAppCheck(firebaseApp, {
+  provider: new ReCaptchaV3Provider('6LcSGH4jAAAAAFYcts-D4tOMuGQFBENha3lghDum'),
+
+  // Optional argument. If true, the SDK automatically refreshes App Check
+  // tokens as needed.
+  isTokenAutoRefreshEnabled: true
+});
+setTokenAutoRefreshEnabled(appCheck,true);
 
 
 
@@ -190,7 +202,7 @@ function downloadFile(path, file) {
   .then((url) => {
     // `url` is the download URL for 'images/stars.jpg'
 
-   
+   console.log(url)
 
   
     fetch(url).then(res => res.blob()).then(file => {
